@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 /**
  * Hello world!
@@ -12,9 +14,10 @@ import org.hibernate.cfg.Configuration;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Student student = new Student(1,"essam",22,"essam@a.com");
+        Student student = new Student(2,"karim",25,"karim@a.com");
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class);
-        SessionFactory factory = configuration.buildSessionFactory();
+        ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+        SessionFactory factory = configuration.buildSessionFactory(registry);
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(student);
