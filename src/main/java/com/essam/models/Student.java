@@ -10,6 +10,8 @@ public class Student {
     private String name;
     private int age;
     private String email;
+    @OneToOne
+    private Labtop labtop;
 
     public Student() {
     }
@@ -51,6 +53,14 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Labtop getLabtop() {
+        return labtop;
+    }
+
+    public void setLabtop(Labtop labtop) {
+        this.labtop = labtop;
     }
 
     @Override
