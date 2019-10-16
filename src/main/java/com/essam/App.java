@@ -18,10 +18,10 @@ public class App {
         Student student = new Student(1,"ahmed",22,"ahmed@a.com");
         Labtop labtop = new Labtop(1,"Dell");
         student.getLabtop().add(labtop);
-        labtop.getStudent().add(student);
+        labtop.setStudent(student);
         labtop = new Labtop(2,"hp");
         student.getLabtop().add(labtop);
-        labtop.getStudent().add(student);
+        labtop.setStudent(student);
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Labtop.class);
         ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         SessionFactory factory = configuration.buildSessionFactory(registry);
