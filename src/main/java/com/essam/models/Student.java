@@ -1,15 +1,17 @@
 package com.essam.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "StudentTable")
 public class Student {
 
     @Id
     private int id;
+    @Transient
     private String name;
     private int age;
+    @Column(name = "address")
     private String email;
 
     public Student() {
