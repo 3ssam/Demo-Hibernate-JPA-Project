@@ -15,22 +15,14 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Student student = new Student(1,"ahmed",22,"ahmed@a.com");
-        Labtop labtop = new Labtop(1,"Dell");
-        student.getLabtop().add(labtop);
-        labtop.setStudent(student);
-        labtop = new Labtop(2,"hp");
-        student.getLabtop().add(labtop);
-        labtop.setStudent(student);
+        Student student =null;
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Labtop.class);
         ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         SessionFactory factory = configuration.buildSessionFactory(registry);
         Session session = factory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(student);
-        session.save(labtop);
-        labtop = new Labtop(1,"Dell");
-        session.save(labtop);
+        student = (Student) session.get(Student.class,1);
+        System.out.println(student);
         transaction.commit();
     }
 }

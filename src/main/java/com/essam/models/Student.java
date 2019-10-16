@@ -12,7 +12,7 @@ public class Student {
     private String name;
     private int age;
     private String email;
-    @ManyToMany(mappedBy = "student")
+    @ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
     private List<Labtop> labtop = new ArrayList<Labtop>();
 
     public Student() {
@@ -65,6 +65,15 @@ public class Student {
         this.labtop = labtop;
     }
 
+    public String toString1() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -72,6 +81,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
+                ", labtop=" + labtop +
                 '}';
     }
 }
