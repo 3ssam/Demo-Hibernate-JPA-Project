@@ -8,7 +8,6 @@ public class Student {
 
     @Id
     private int id;
-    @Transient
     private String name;
     private int age;
     @Column(name = "address")
