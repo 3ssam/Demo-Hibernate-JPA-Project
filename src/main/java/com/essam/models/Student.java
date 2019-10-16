@@ -1,6 +1,8 @@
 package com.essam.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -10,8 +12,8 @@ public class Student {
     private String name;
     private int age;
     private String email;
-    @OneToOne
-    private Labtop labtop;
+    @OneToMany
+    private List<Labtop> labtop = new ArrayList<>();
 
     public Student() {
     }
@@ -55,11 +57,11 @@ public class Student {
         this.email = email;
     }
 
-    public Labtop getLabtop() {
+    public List<Labtop> getLabtop() {
         return labtop;
     }
 
-    public void setLabtop(Labtop labtop) {
+    public void setLabtop(List<Labtop> labtop) {
         this.labtop = labtop;
     }
 
