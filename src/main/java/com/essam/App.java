@@ -19,10 +19,8 @@ public class App {
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Labtop.class);
         ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         SessionFactory factory = configuration.buildSessionFactory(registry);
-        Session session = factory.openSession();
-        Transaction transaction = session.beginTransaction();
-        student = (Student) session.get(Student.class,1);
-        System.out.println(student);
-        transaction.commit();
+        Session session1 = factory.openSession();
+        student = (Student) session1.get(Student.class,1);
+
     }
 }
