@@ -16,6 +16,8 @@ public class App {
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class);
         SessionFactory factory = configuration.buildSessionFactory();
         Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
         session.save(student);
+        transaction.commit();
     }
 }
