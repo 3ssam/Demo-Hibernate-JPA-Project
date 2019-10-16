@@ -12,8 +12,8 @@ public class Student {
     private String name;
     private int age;
     private String email;
-    @OneToMany
-    private List<Labtop> labtop = new ArrayList<>();
+    @ManyToMany(mappedBy = "student")
+    private List<Labtop> labtop = new ArrayList<Labtop>();
 
     public Student() {
     }
