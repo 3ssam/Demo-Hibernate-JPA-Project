@@ -14,7 +14,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Student student = new Student(2,"karim",25,"karim@a.com");
+        Student student = new Student(3,"ahmed",23,"ahmed@a.com");
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class);
         ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         SessionFactory factory = configuration.buildSessionFactory(registry);
