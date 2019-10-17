@@ -2,12 +2,14 @@ package com.essam;
 
 import com.essam.models.Labtop;
 import com.essam.models.Student;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -21,12 +23,13 @@ public class App {
         Session session = factory.openSession();
         session.beginTransaction();
 
-        Random random = new Random();
+        Query query = session.createQuery("from Student");
+        List<Student> list = query.list();
 
-        for (int i = 1 ; i <= 50 ; i++){
-            Student student = new Student(i,"name "+i,random.nextInt(20),"Email_"+i+"@a.com");
-            session.save(student);
+        for (Student student: list){
+            System.out.println(student);
         }
+
         session.getTransaction().commit();
         session.close();
 
