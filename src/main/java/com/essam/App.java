@@ -23,12 +23,16 @@ public class App {
         Session session = factory.openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("from Student");
+        Query query = session.createQuery("from Student where age > 15");
         List<Student> list = query.list();
 
         for (Student student: list){
             System.out.println(student);
         }
+
+        query = session.createQuery("from Student where id = 7");
+        Student s = (Student) query.uniqueResult();
+        System.out.println(s);
 
         session.getTransaction().commit();
         session.close();
