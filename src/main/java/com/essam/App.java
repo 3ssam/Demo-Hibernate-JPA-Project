@@ -26,13 +26,13 @@ public class App {
         Query query = session.createQuery("from Student where age > 15");
         List<Student> list = query.list();
 
-        for (Student student: list){
-            System.out.println(student);
+        for (Student student : list) {
+            //System.out.println(student);
         }
 
-        query = session.createQuery("from Student where id = 7");
-        Student s = (Student) query.uniqueResult();
-        System.out.println(s);
+        query = session.createQuery("select id,age,name from Student where id = 7");
+        Object[] s = (Object[]) query.uniqueResult();
+        System.out.println(s[0] + " : " + s[1] + " : " + s[2]);
 
         session.getTransaction().commit();
         session.close();
