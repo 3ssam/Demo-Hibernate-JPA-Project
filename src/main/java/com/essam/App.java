@@ -17,5 +17,13 @@ public class App {
         EntityManager manager = factory.createEntityManager();
         student =  manager.find(Student.class,9);
         System.out.println(student);
+        manager.getTransaction().begin();
+        Student student1 = new Student(1211,"essam",22,"essam@a.com");
+        manager.persist(student1);
+        manager.getTransaction().commit();
+
+        System.out.println(student1);
+
+
     }
 }
