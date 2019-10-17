@@ -30,7 +30,8 @@ public class App {
             //System.out.println(student);
         }
 
-        query = session.createQuery("select id,age,name from Student where id = 7");
+        query = session.createQuery("select id,age,name from Student s where s.id = :param");
+        query.setParameter("param",9);
         Object[] s = (Object[]) query.uniqueResult();
         System.out.println(s[0] + " : " + s[1] + " : " + s[2]);
 
