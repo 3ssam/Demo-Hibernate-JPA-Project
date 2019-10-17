@@ -21,19 +21,17 @@ public class App {
         SessionFactory factory = configuration.buildSessionFactory(registry);
         Session session1 = factory.openSession();
         student = (Student) session1.get(Student.class,1);
-
+        session1.beginTransaction();
         System.out.println(student);
-        session1.beginTransaction().commit();
-        student = (Student) session1.get(Student.class,1);
-        System.out.println(student);
-        session1.beginTransaction().commit();
+        session1.getTransaction().commit();
         session1.close();
 
 
         Session session2 = factory.openSession();
+        session2.beginTransaction();
         student = (Student) session2.get(Student.class,1);
         System.out.println(student);
-        session2.beginTransaction().commit();
+        session2.getTransaction().commit();
         session2.close();
     }
 }
