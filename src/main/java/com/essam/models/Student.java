@@ -1,14 +1,8 @@
 package com.essam.models;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Student {
 
     @Id
@@ -16,8 +10,6 @@ public class Student {
     private String name;
     private int age;
     private String email;
-    @ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
-    private List<Labtop> labtop = new ArrayList<Labtop>();
 
     public Student() {
     }
@@ -61,23 +53,6 @@ public class Student {
         this.email = email;
     }
 
-    public List<Labtop> getLabtop() {
-        return labtop;
-    }
-
-    public void setLabtop(List<Labtop> labtop) {
-        this.labtop = labtop;
-    }
-
-    public String toString1() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
     @Override
     public String toString() {
         return "Student{" +
@@ -85,7 +60,6 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
-                ", labtop=" + labtop +
                 '}';
     }
 }

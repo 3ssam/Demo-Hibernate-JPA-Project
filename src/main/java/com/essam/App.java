@@ -4,34 +4,32 @@ import com.essam.models.Labtop;
 import com.essam.models.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+
+import java.util.Random;
 
 /**
  * Hello world!
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        Student student =null;
         Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Labtop.class);
         ServiceRegistry registry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
         SessionFactory factory = configuration.buildSessionFactory(registry);
-        Session session1 = factory.openSession();
-        student = (Student) session1.get(Student.class,1);
-        session1.beginTransaction();
-        System.out.println(student);
-        session1.getTransaction().commit();
-        session1.close();
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        Random random = new Random();
+
+        for (int i = 1 ; i <= 50 ; i++){
+            Student student = new Student(i,"name "+i,random.nextInt(20),"Email_"+i+"@a.com");
+            session.save(student);
+        }
+        session.getTransaction().commit();
+        session.close();
 
 
-        Session session2 = factory.openSession();
-        session2.beginTransaction();
-        student = (Student) session2.get(Student.class,1);
-        System.out.println(student);
-        session2.getTransaction().commit();
-        session2.close();
     }
 }
